@@ -1,21 +1,31 @@
 let amigos = [];
 
+function esTextoValido(texto) {
+    return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(texto);
+}
+
 function agregarAmigo() {
     const input = document.getElementById("amigo");
     const nombre = input.value.trim();
 
-    if (nombre) {
-        amigos.push(nombre);
-        mostrarAmigos(); 
-        input.value = ""; 
-    } else {
+    if (!nombre) {
         alert("Por favor, ingresa un nombre válido.");
+        return;
     }
+
+    if (!esTextoValido(nombre)) {
+        alert("El nombre solo debe contener letras y espacios.");
+        return;
+    }
+
+    amigos.push(nombre);
+    mostrarAmigos();
+    input.value = "";
 }
 
 function mostrarAmigos() {
     const lista = document.getElementById("listaAmigos");
-    lista.innerHTML = ""; 
+    lista.innerHTML = "";
 
     for (let amigo of amigos) {
         let li = document.createElement("li");
