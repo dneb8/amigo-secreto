@@ -6,9 +6,22 @@ function agregarAmigo() {
 
     if (nombre) {
         amigos.push(nombre);
-        console.log("Lista de amigos:", amigos); //BORRAR CONSOLE LOG
+        mostrarAmigos(); 
         input.value = ""; 
     } else {
         alert("Por favor, ingresa un nombre válido.");
     }
 }
+
+function mostrarAmigos() {
+    const lista = document.getElementById("listaAmigos");
+    lista.innerHTML = ""; 
+
+    for (let amigo of amigos) {
+        let li = document.createElement("li");
+        li.textContent = amigo;
+        lista.appendChild(li);
+    }
+}
+
+
